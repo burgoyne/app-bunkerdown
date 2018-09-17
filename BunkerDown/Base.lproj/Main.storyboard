@@ -21,10 +21,24 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lec-ZN-qx3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhe-Ja-v3d">
+                                <rect key="frame" x="314" y="615" width="51" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="51" id="PHe-hR-HPX"/>
+                                    <constraint firstAttribute="height" constant="42" id="QcK-jJ-zYj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="ADD"/>
+                                <connections>
+                                    <action selector="onBunkerBtnPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="pBL-Xz-trz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lec-ZN-qx3" firstAttribute="leading" secondItem="Zmu-O2-i1l" secondAttribute="leading" id="3Hx-q5-LI5"/>
+                            <constraint firstItem="Zmu-O2-i1l" firstAttribute="trailing" secondItem="Qhe-Ja-v3d" secondAttribute="trailing" constant="10" id="M9y-GI-SDZ"/>
+                            <constraint firstItem="Zmu-O2-i1l" firstAttribute="bottom" secondItem="Qhe-Ja-v3d" secondAttribute="bottom" constant="10" id="bnF-SQ-SbB"/>
                             <constraint firstItem="Zmu-O2-i1l" firstAttribute="trailing" secondItem="lec-ZN-qx3" secondAttribute="trailing" id="ebs-qt-mhV"/>
                             <constraint firstItem="lec-ZN-qx3" firstAttribute="top" secondItem="ev9-6s-8RN" secondAttribute="top" id="f8q-Mm-GcS"/>
                             <constraint firstItem="Zmu-O2-i1l" firstAttribute="bottom" secondItem="lec-ZN-qx3" secondAttribute="bottom" id="uTM-7q-bBu"/>

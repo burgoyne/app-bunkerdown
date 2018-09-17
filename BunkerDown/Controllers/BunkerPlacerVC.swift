@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class BunkerPlacerVC: UIViewController, ARSCNViewDelegate {
+class BunkerPlacerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -77,4 +77,18 @@ class BunkerPlacerVC: UIViewController, ARSCNViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    @IBAction func onBunkerBtnPressed(_ sender: UIButton) {
+        let bunkerPickerVC = BunkerPickerVC(size: CGSize(width: 250, height: 500))
+        bunkerPickerVC.modalPresentationStyle = .popover
+        bunkerPickerVC.popoverPresentationController?.delegate = self
+        present(bunkerPickerVC, animated: true, completion: nil)
+        bunkerPickerVC.popoverPresentationController?.sourceView = sender
+        bunkerPickerVC.popoverPresentationController?.sourceRect = sender.bounds
+    }
+    
 }

@@ -13,6 +13,7 @@
 		8BC6DB73215046FF0077C80C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC6DB71215046FF0077C80C /* Main.storyboard */; };
 		8BC6DB75215047000077C80C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BC6DB74215047000077C80C /* Assets.xcassets */; };
 		8BC6DB78215047000077C80C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC6DB76215047000077C80C /* LaunchScreen.storyboard */; };
+		8BC6DB81215050900077C80C /* BunkerPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC6DB80215050900077C80C /* BunkerPickerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8BC6DB74215047000077C80C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BC6DB77215047000077C80C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BC6DB79215047000077C80C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BC6DB80215050900077C80C /* BunkerPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BunkerPickerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				8BC6DB6F215046FF0077C80C /* BunkerPlacerVC.swift */,
+				8BC6DB80215050900077C80C /* BunkerPickerVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BC6DB81215050900077C80C /* BunkerPickerVC.swift in Sources */,
 				8BC6DB70215046FF0077C80C /* BunkerPlacerVC.swift in Sources */,
 				8BC6DB6C215046FF0077C80C /* AppDelegate.swift in Sources */,
 			);
