@@ -14,6 +14,8 @@ class BunkerPlacerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentation
 
     @IBOutlet var sceneView: ARSCNView!
     
+    var selectedBunker: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +26,8 @@ class BunkerPlacerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentation
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/PSP.dae")!
+        let scene = SCNScene(named: "art.scnassets/main.scn")!
+        sceneView.autoenablesDefaultLighting = true
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -78,12 +81,22 @@ class BunkerPlacerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentation
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let results = sceneView.hitTest(touch.location(in: sceneView), types: [.featurePoint])
+        guard let hitFeature = results.last else { return }
+        let hitTransform = SCNMatrix4(hitFeature.worldTransform)
+        let hitPosition = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
+        placeBunker(position: hitPosition)
+    }
+    
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
     
     @IBAction func onBunkerBtnPressed(_ sender: UIButton) {
         let bunkerPickerVC = BunkerPickerVC(size: CGSize(width: 250, height: 500))
+        bunkerPickerVC.bunkerPlacerVC = self
         bunkerPickerVC.modalPresentationStyle = .popover
         bunkerPickerVC.popoverPresentationController?.delegate = self
         present(bunkerPickerVC, animated: true, completion: nil)
@@ -91,4 +104,16 @@ class BunkerPlacerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentation
         bunkerPickerVC.popoverPresentationController?.sourceRect = sender.bounds
     }
     
+    func onBunkerSelected(_ bunkerName: String) {
+        selectedBunker = bunkerName
+    }
+    
+    func placeBunker(position: SCNVector3) {
+        if let bunkerName = selectedBunker {
+            let bunker = Bunker.getBunkerForName(bunkerName: bunkerName)
+            bunker.position = position
+            bunker.scale = SCNVector3Make(0.01, 0.01, 0.01)
+            sceneView.scene.rootNode.addChildNode(bunker)
+        }
+    }
 }

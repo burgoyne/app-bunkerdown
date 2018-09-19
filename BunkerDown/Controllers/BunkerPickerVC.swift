@@ -13,6 +13,7 @@ class BunkerPickerVC: UIViewController {
     
     var sceneView: SCNView!
     var size: CGSize!
+    weak var bunkerPlacerVC: BunkerPlacerVC!
     
     init(size: CGSize) {
         super.init(nibName: nil, bundle: nil)
@@ -29,6 +30,8 @@ class BunkerPickerVC: UIViewController {
         sceneView = SCNView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         view.insertSubview(sceneView, at: 0)
         
+        preferredContentSize = size
+        
         let scene = SCNScene(named: "art.scnassets/bunkers.scn")!
         sceneView.scene = scene
         
@@ -36,11 +39,34 @@ class BunkerPickerVC: UIViewController {
         camera.usesOrthographicProjection = true
         scene.rootNode.camera = camera
         
-        let obj = SCNScene(named: "art.scnassets/PSP.dae")
-        let node = obj?.rootNode.childNode(withName: "race", recursively: true)!
-        node?.scale = SCNVector3Make(0.10, 0.10, 0.10)
-        node?.position = SCNVector3Make(-1.7, 0.6, -1)
-        scene.rootNode.addChildNode(node!)
-        preferredContentSize = size
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        sceneView.addGestureRecognizer(tap)
+        
+        let race = Bunker.getRace()
+        Bunker.startRotation(node: race)
+        scene.rootNode.addChildNode(race)
+        
+        let miniRace = Bunker.getMiniRace()
+        Bunker.startRotation(node: miniRace)
+        scene.rootNode.addChildNode(miniRace)
+        
+        let cakeTall = Bunker.getCakeTall()
+        Bunker.startRotation(node: cakeTall)
+        scene.rootNode.addChildNode(cakeTall)
+        
+        let cakeSmall = Bunker.getCakeSmall()
+        Bunker.startRotation(node: cakeSmall)
+        scene.rootNode.addChildNode(cakeSmall)
+    }
+    
+    @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        let p = gestureRecognizer.location(in: sceneView)
+        let hitResults = sceneView.hitTest(p, options: [:])
+        
+        if hitResults.count > 0 {
+            let node = hitResults[0].node
+            bunkerPlacerVC.onBunkerSelected(node.name!)
+            dismiss(animated: true, completion: nil)
+        }
     }
 }

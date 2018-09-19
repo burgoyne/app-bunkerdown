@@ -21,14 +21,13 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lec-ZN-qx3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhe-Ja-v3d">
-                                <rect key="frame" x="314" y="615" width="51" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhe-Ja-v3d">
+                                <rect key="frame" x="285" y="602" width="80" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="51" id="PHe-hR-HPX"/>
-                                    <constraint firstAttribute="height" constant="42" id="QcK-jJ-zYj"/>
+                                    <constraint firstAttribute="width" constant="80" id="Yry-sX-PrR"/>
+                                    <constraint firstAttribute="height" constant="55" id="yn7-hz-hxM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="ADD"/>
+                                <state key="normal" image="bunkerButton"/>
                                 <connections>
                                     <action selector="onBunkerBtnPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="pBL-Xz-trz"/>
                                 </connections>
@@ -54,4 +53,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bunkerButton" width="107" height="71"/>
+    </resources>
 </document>
