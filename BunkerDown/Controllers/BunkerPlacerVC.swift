@@ -12,9 +12,15 @@ import ARKit
 
 class BunkerPlacerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentationControllerDelegate {
 
+    //outlets
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var controls: UIStackView!
+    @IBOutlet weak var rotateBtn: UIButton!
+    @IBOutlet weak var upBtn: UIButton!
+    @IBOutlet weak var downBtn: UIButton!
     
-    var selectedBunker: String?
+    var selectedBunkerName: String?
+    var selectedBunker: SCNNode?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +37,16 @@ class BunkerPlacerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentation
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        let gesture1 = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
+        let gesture2 = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
+        let gesture3 = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
+        gesture1.minimumPressDuration = 0.1
+        gesture2.minimumPressDuration = 0.1
+        gesture3.minimumPressDuration = 0.1
+        rotateBtn.addGestureRecognizer(gesture1)
+        upBtn.addGestureRecognizer(gesture2)
+        downBtn.addGestureRecognizer(gesture3)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,15 +121,43 @@ class BunkerPlacerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentation
     }
     
     func onBunkerSelected(_ bunkerName: String) {
-        selectedBunker = bunkerName
+        selectedBunkerName = bunkerName
     }
     
     func placeBunker(position: SCNVector3) {
-        if let bunkerName = selectedBunker {
+        if let bunkerName = selectedBunkerName {
+            controls.isHidden = false
             let bunker = Bunker.getBunkerForName(bunkerName: bunkerName)
+            selectedBunker = bunker
             bunker.position = position
-            bunker.scale = SCNVector3Make(0.01, 0.01, 0.01)
+            bunker.scale = SCNVector3Make(0.5, 0.5, 0.5)
             sceneView.scene.rootNode.addChildNode(bunker)
+        }
+    }
+    
+    @IBAction func onRemovePressed(_ sender: Any) {
+        if let bunker = selectedBunker {
+            bunker.removeFromParentNode()
+            selectedBunker = nil
+        }
+    }
+    
+    @objc func onLongPress(gesture: UILongPressGestureRecognizer) {
+        if let bunker = selectedBunker {
+            if gesture.state == .ended {
+                bunker.removeAllActions()
+            } else if gesture.state == .began {
+                if gesture.view === rotateBtn {
+                    let rotate = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(0.08 * Double.pi), z: 0, duration: 0.1))
+                    bunker.runAction(rotate)
+                } else if gesture.view === upBtn {
+                    let move = SCNAction.repeatForever(SCNAction.moveBy(x: 0, y: 0.08, z: 0, duration: 0.1))
+                    bunker.runAction(move)
+                } else if gesture.view === downBtn {
+                    let move = SCNAction.repeatForever(SCNAction.moveBy(x: 0, y: -0.08, z: 0, duration: 0.1))
+                    bunker.runAction(move)
+                }
+            }
         }
     }
 }

@@ -32,6 +32,9 @@ class BunkerPickerVC: UIViewController {
         
         preferredContentSize = size
         
+        view.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.layer.borderWidth = 3.0
+        
         let scene = SCNScene(named: "art.scnassets/bunkers.scn")!
         sceneView.scene = scene
         

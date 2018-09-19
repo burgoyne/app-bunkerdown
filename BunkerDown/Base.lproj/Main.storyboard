@@ -22,30 +22,76 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhe-Ja-v3d">
-                                <rect key="frame" x="285" y="602" width="80" height="55"/>
+                                <rect key="frame" x="258" y="586" width="107" height="71"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="Yry-sX-PrR"/>
-                                    <constraint firstAttribute="height" constant="55" id="yn7-hz-hxM"/>
+                                    <constraint firstAttribute="width" constant="107" id="Yry-sX-PrR"/>
+                                    <constraint firstAttribute="height" constant="71" id="yn7-hz-hxM"/>
                                 </constraints>
                                 <state key="normal" image="bunkerButton"/>
                                 <connections>
                                     <action selector="onBunkerBtnPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="pBL-Xz-trz"/>
                                 </connections>
                             </button>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="LaO-gF-1TP">
+                                <rect key="frame" x="10" y="616" width="200" height="41"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg4-vy-fH1">
+                                        <rect key="frame" x="0.0" y="0.0" width="41" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="cAF-9k-cT0"/>
+                                            <constraint firstAttribute="width" constant="41" id="o99-iE-3by"/>
+                                        </constraints>
+                                        <state key="normal" image="removeButton"/>
+                                        <connections>
+                                            <action selector="onRemovePressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="OKD-tp-VY3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAO-Qr-lhi">
+                                        <rect key="frame" x="53" y="0.0" width="41" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="XdJ-Jm-NWE"/>
+                                            <constraint firstAttribute="width" constant="41" id="fdE-q8-yh6"/>
+                                        </constraints>
+                                        <state key="normal" image="rotateButton"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbQ-Xe-Nba">
+                                        <rect key="frame" x="106" y="0.0" width="41" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="41" id="sgR-gT-UsD"/>
+                                            <constraint firstAttribute="height" constant="41" id="uEX-yh-dt6"/>
+                                        </constraints>
+                                        <state key="normal" image="upArrow"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aga-V1-LzA">
+                                        <rect key="frame" x="159" y="0.0" width="41" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="41" id="Up3-2K-Nwg"/>
+                                            <constraint firstAttribute="height" constant="41" id="ufQ-mT-ayY"/>
+                                        </constraints>
+                                        <state key="normal" image="downArrow"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="LaO-gF-1TP" firstAttribute="leading" secondItem="Zmu-O2-i1l" secondAttribute="leading" constant="10" id="05e-Mn-Jkz"/>
                             <constraint firstItem="lec-ZN-qx3" firstAttribute="leading" secondItem="Zmu-O2-i1l" secondAttribute="leading" id="3Hx-q5-LI5"/>
                             <constraint firstItem="Zmu-O2-i1l" firstAttribute="trailing" secondItem="Qhe-Ja-v3d" secondAttribute="trailing" constant="10" id="M9y-GI-SDZ"/>
                             <constraint firstItem="Zmu-O2-i1l" firstAttribute="bottom" secondItem="Qhe-Ja-v3d" secondAttribute="bottom" constant="10" id="bnF-SQ-SbB"/>
                             <constraint firstItem="Zmu-O2-i1l" firstAttribute="trailing" secondItem="lec-ZN-qx3" secondAttribute="trailing" id="ebs-qt-mhV"/>
                             <constraint firstItem="lec-ZN-qx3" firstAttribute="top" secondItem="ev9-6s-8RN" secondAttribute="top" id="f8q-Mm-GcS"/>
+                            <constraint firstItem="Zmu-O2-i1l" firstAttribute="bottom" secondItem="LaO-gF-1TP" secondAttribute="bottom" constant="10" id="gXt-E6-xK8"/>
                             <constraint firstItem="Zmu-O2-i1l" firstAttribute="bottom" secondItem="lec-ZN-qx3" secondAttribute="bottom" id="uTM-7q-bBu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zmu-O2-i1l"/>
                     </view>
                     <connections>
+                        <outlet property="controls" destination="LaO-gF-1TP" id="oNn-dj-Mda"/>
+                        <outlet property="downBtn" destination="Aga-V1-LzA" id="eHE-dj-lgA"/>
+                        <outlet property="rotateBtn" destination="kAO-Qr-lhi" id="HpH-XI-7TO"/>
                         <outlet property="sceneView" destination="lec-ZN-qx3" id="LmY-t0-v6G"/>
+                        <outlet property="upBtn" destination="XbQ-Xe-Nba" id="NxL-QY-Yr1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -55,5 +101,9 @@
     </scenes>
     <resources>
         <image name="bunkerButton" width="107" height="71"/>
+        <image name="downArrow" width="32" height="32"/>
+        <image name="removeButton" width="32" height="32"/>
+        <image name="rotateButton" width="32" height="32"/>
+        <image name="upArrow" width="32" height="32"/>
     </resources>
 </document>
